@@ -42,7 +42,7 @@ define('DB_USER', 'admin');
 //define('DB_PASSWORD', $creds['password']);
 define('DB_PASSWORD', 'XNMSGRZOHPGYXPYA');
 /** MySQL hostname */
-define('DB_HOST', 'bluemix-sandbox-dal-9-al.4.dblayer.com');
+define('DB_HOST', 'bluemix-sandbox-dal-9-al.4.dblayer.com:22510');
 define('DB_PORT', '22510');
 
 /** Database Charset to use in creating database tables. */
