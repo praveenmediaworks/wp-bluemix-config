@@ -30,49 +30,20 @@
  *    path:  /compose
  */
 
-$vcap = getenv('VCAP_SERVICES');
-$data = json_decode($vcap, true);
-if (isset($data)) {
-  if (isset($data['cleardb'][0]['credentials'])) {
-    $creds = $data['cleardb'][0]['credentials'];
-  }
-
-  elseif (isset($data['user-provided'][0]['credentials'])) {
-    $rawcreds = $data['user-provided'][0]['credentials'];
-    $creds = parse_url($rawcreds['uri']);
-      if ($creds['scheme'] === 'mysql') {
-        // ** Normalizing expected keys to parseURL calculated values ** //
-        $creds['name'] = substr($creds['path'], 1);
-        $creds['username'] = $creds['user'];
-        $creds['password'] = $creds['pass'];
-        $creds['hostname'] = $creds['host'] . ':' . $creds['port'];
-      }
-  }
-
-  elseif (isset($data['compose-for-mysql'][0]['credentials'])) {
-    $rawcreds = $data['compose-for-mysql'][0]['credentials'];
-    $creds = parse_url($rawcreds['uri']);
-      if ($creds['scheme'] === 'mysql') {
-        // ** Normalizing expected keys to parseURL calculated values ** //
-        $creds['name'] = substr($creds['path'], 1);
-        $creds['username'] = $creds['user'];
-        $creds['password'] = $creds['pass'];
-        $creds['hostname'] = $creds['host'] . ':' . $creds['port'];
-      }
-  }
-
-}
-
-define('DB_NAME', $creds['name']);
-
+//$vcap = getenv("VCAP_SERVICES");
+//$data = json_decode($vcap, true);
+//$creds = $data['cleardb'][0]['credentials'];
+//define('DB_NAME', $creds['name']);
+define('DB_NAME', 'compose');
 /** MySQL database username */
-define('DB_USER', $creds['username']);
-
+//define('DB_USER', $creds['username']);
+define('DB_USER', 'admin');
 /** MySQL database password */
-define('DB_PASSWORD', $creds['password']);
-
+//define('DB_PASSWORD', $creds['password']);
+define('DB_PASSWORD', 'XNMSGRZOHPGYXPYA');
 /** MySQL hostname */
-define('DB_HOST', $creds['hostname']);
+define('DB_HOST', 'bluemix-sandbox-dal-9-al.4.dblayer.com');
+define('DB_PORT', '22510');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
